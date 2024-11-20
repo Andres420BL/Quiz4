@@ -4,7 +4,8 @@ body {
   font-size: 16px;
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.5;
-  background-color: #2be741;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(20,226,68,1) 35%, rgba(0,212,255,1) 100%);;
   color: white;
 }
 
