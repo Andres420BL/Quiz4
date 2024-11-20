@@ -6,15 +6,16 @@ let empty = document.querySelector(".empty");
 addBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const text = input.value;
+  const texto = input.value;
 
-  if (text !== "") {
+  if (texto !== "") {
     const li = document.createElement("li");
     const p = document.createElement("p");
-    p.textContent = text;
+    p.textContent = texto;
 
     li.appendChild(p);
-    li.appendChild(addDeleteBtn());
+    li.appendChild(addEditBtn(p)); // Añadir botón de editar
+    li.appendChild(addDeleteBtn()); // Añadir botón de eliminar
     ul.appendChild(li);
 
     input.value = "";
@@ -24,9 +25,9 @@ addBtn.addEventListener("click", (e) => {
 
 function addDeleteBtn() {
   const deleteBtn = document.createElement("button");
-
-  deleteBtn.textContent = "X";
   deleteBtn.className = "btn-delete";
+  
+  deleteBtn.textContent = "";
 
   deleteBtn.addEventListener("click", (e) => {
     const item = e.target.parentElement;
@@ -40,4 +41,24 @@ function addDeleteBtn() {
   });
 
   return deleteBtn;
+}
+
+function addEditBtn(p) {
+  const editBtn = document.createElement("button");
+  editBtn.className = "btn-edit";
+
+  const icon = document.createElement('img');
+  icon.src = "../assets/editar.png";  
+  icon.alt = "Edit Icon";  
+
+  editBtn.appendChild(icon);
+
+  editBtn.addEventListener("click", () => {
+    const newText = prompt("Edita tu tarea:", p.textContent);
+    if (newText !== null && newText.trim() !== "") {
+      p.textContent = newText;
+    }
+  });
+
+  return editBtn;
 }
